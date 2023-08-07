@@ -18,6 +18,7 @@ import {
 
 import { useCities } from '../contexts/CitiesContext';
 import { useGeolocation } from '../hooks/useGeoLocation';
+import { useUrlPosition } from '../hooks/useUrlPosition';
 import Button from './Button';
 import styles from './Map.module.css';
 
@@ -33,8 +34,7 @@ export default function Map() {
         getPosition  
     } = useGeolocation();
 
-    const mapLat = searchParams.get('lat');
-    const mapLng = searchParams.get('lng');
+    const [mapLat, mapLng] = useUrlPosition();
 
     useEffect(() => {
         if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
