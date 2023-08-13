@@ -19,15 +19,18 @@ function City() {
   const { id } = useParams();
   const { getCity, currentCity, isLoading } = useCities();
 
-  useEffect(function() {
-    getCity();
-  }, [id]);
+  useEffect(
+    function () {
+      getCity(id);
+    },
+    [id, getCity]
+  );
 
   const { cityName, emoji, date, notes } = currentCity;
 
   if (isLoading) return <Spinner />;
-  
-  return ( 
+
+  return (
     <div className={styles.city}>
       <div className={styles.row}>
         <h6>City name</h6>
@@ -60,7 +63,7 @@ function City() {
       </div>
 
       <div>
-        <BackButton /> 
+        <BackButton />
       </div>
     </div>
   );
